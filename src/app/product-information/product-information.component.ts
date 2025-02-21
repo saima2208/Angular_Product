@@ -1,11 +1,50 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Product } from '../app.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-product-information',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './product-information.component.html',
   styleUrl: './product-information.component.css'
 })
 export class ProductInformationComponent {
+  products: Product = new Product(0, '', 0, 0, new Date(), new Date(), '', '');
+  isUpdate = false;
+  constructor(private router: Router) {
+    const nav = this.router.getCurrentNavigation();
+    if (nav?.extras.state && nav.extras.state['product']) {
+      this.products = nav.extras.state['product'];
+      this.isUpdate = true;
+    }
+  }
+
+  ngOnInit(): void {
+    console.log('product-informationComponent');
+    localStorage.setItem('id','0');
+    localStorage.setItem('product_name','XX');
+    localStorage.setItem('product_price', '0');
+    localStorage.setItem('quantity','0');
+    localStorage.setItem('purchase_date','new Date()');
+    localStorage.setItem('sell_date','new Date()');
+    localStorage.setItem('buy_from','');
+    localStorage.setItem('sell_to','');
+  }
+
+  onSubmit() {
+    let products: Product[] = JSON.parse(localStorage.getItem('products') || '[]');
+    if (this.isUpdate) {
+      products = products.map((product) => (product.id == this.products.id ? this.products : product));
+    } else {
+      products.push(this.products);
+    }
+    localStorage.setItem('products', JSON.stringify(products));
+    this.products = new Product(0, '', 0, 0, new Date(), new Date(), '', '');
+    //alert('User added successfully');
+    this.router.navigate(['/list']);
+  }
 
 }
+
+
