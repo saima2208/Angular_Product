@@ -1,6 +1,6 @@
 <div class="container">
 <h1 style="text-align: center;background-color: aquamarine;">Product List</h1>
-<!-- @if (products.length>0){ -->
+ 
     <table class="table table-striped">
         <thead>
             <tr>
@@ -16,7 +16,7 @@
             </tr>
         </thead>
         <tbody>
-          @for (product of products; track product.id){
+          @for (product of products; track product.name){
             <tr>
                 <td>{{products.indexOf(product)+1}}</td>
                 <td>{{product.name}}</td>
@@ -37,6 +37,7 @@
                
         </tbody>
     </table>
+
 
 
 </div>

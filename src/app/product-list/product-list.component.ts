@@ -18,16 +18,20 @@ export class ProductListComponent implements OnInit {
    }
 
    editProducts(product: Product) {
-     const id = product.id;
-     this.router.navigate(['/add', id], { state: { product: this.products.find(p => p.id === id) } });
+     //const id = product.id;
+     this.router.navigate(['/add'], { state: { product}});
    }
+   
+
    deleteProduct(product: Product) {
-     const id = product.id;
+     //const id = product.id;
      if (confirm('Are you sure you want to delete this product?')) {
        this.products = this.products.filter(p => p !== product);
        localStorage.setItem('products', JSON.stringify(this.products));
      }
    }
+
+   
 
 }
 

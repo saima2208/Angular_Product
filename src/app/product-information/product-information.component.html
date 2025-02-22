@@ -1,16 +1,17 @@
 
 <div class="container">
-    <h1 style="text-align: center;background-color: aquamarine;">Add Product Information</h1>
     
+    <h1 style="text-align: center;background-color: aquamarine;">Add Product Information</h1>
 <form (ngSubmit)= "onSubmit()">
+    
     
     <div class="mb-3">
         <label for="product_name">Product Name:</label><br>
-        <input type="text" class="form-control" id="product_name" name="product_name" [(ngModel)]="products.name" placeholder="Product Name">
+        <input type="text" class="form-control" id="product_name" name="product_name" [(ngModel)]="products.name" placeholder="Product Name" required>
     </div>
     <div class="mb-3">
         <label for="product_price">Product Price:</label><br>
-        <input type="number"  class="form-control" id="product_rice" name="product_price" [(ngModel)]="products.price" placeholder="Product Price">
+        <input type="number"  class="form-control" id="product_rice" name="product_price" [(ngModel)]="products.price" placeholder="Product Price" required>
     </div>
     <div class="mb-3">
         <label for="quantity">Quantity:</label><br>
